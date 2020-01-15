@@ -23,10 +23,10 @@ React with Hooks Video (https://youtu.be/dpw9EHDh2bM)
 ## How to setup?
 #### Below setup is only work for `master` branch.
 1. Download a .zip file of repository.
-2. Extract the **BlogPost-reactnative-hooks-API.zip** file
+2. Extract the **BlogPost-reactnative-hooks-API-master.zip** file
 3. Open Extracted folder in your favorite IDE. (Atom, VisualStudioCode, Sublime)
 4. Open command prompt in windows press <kbd>⌃R</kbd> OR open terminal in MacOS.
-5. go to **BlogPost-reactnative-hooks-API.zip** project directory
+5. go to **BlogPost-reactnative-hooks-API-master** project directory
 6. Execute command `npm install`. 
   1. Before writing this command make sure you have preinstalled **Expo CLI QuickStart** in your machine.
   2. If not follow guide (https://facebook.github.io/react-native/docs/getting-started)
