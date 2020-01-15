@@ -1,12 +1,16 @@
 import createDataContext from './createDataContext';
-import jsonServer from '../api/jsonServer';
 
 const ADD_BLOGPOST = 'add_blogpost';
 const DELETE_BLOGPOST = 'delete_blogpost';
 const EDIT_BLODGPOST = 'edit_blogpost';
-const GET_BLOGPOSTS = 'get_blogposts';
 
-const INITIAL_STATE = [];
+const INITIAL_STATE = [
+    {
+        id: 1,
+        title: "Title",
+        content: "Content"
+    }
+];
 
 /**
  * reducer fucntion
@@ -15,9 +19,6 @@ const INITIAL_STATE = [];
  */
 const blogReducer = (state, action) => {
     switch(action.type) {
-        case GET_BLOGPOSTS:
-            return action.payload;
-
         case ADD_BLOGPOST:
             return [...state, {
                 id: Math.floor(Math.random() * 99999),
@@ -83,14 +84,6 @@ const editBlogPost = (dispatch) => {
     }
 }
 
-const getBlogPosts = (dispatch) => {
-    return async () => {
-        const response = await jsonServer.get('/blogposts');
-
-        dispatch({ type: GET_BLOGPOSTS, payload: response.data });
-    }
-}
-
 // const BlogProvider = ({ children }) => {
 
 //     const [state, dispatch] = useReducer(blogReducer, INITIAL_STATE);
@@ -118,7 +111,6 @@ export const { Context, Provider } = createDataContext(
     { 
         addBlogPost,
         deleteBlogPost,
-        editBlogPost,
-        getBlogPosts
+        editBlogPost
     }, 
     INITIAL_STATE);

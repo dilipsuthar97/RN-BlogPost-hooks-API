@@ -14,15 +14,11 @@ import { HeaderButton } from '../components/common';
 
 const IndexScreen = ({ navigation }) => {
 
-    const { state, deleteBlogPost, getBlogPosts } = useContext(Context);
+    const { state, deleteBlogPost } = useContext(Context);
 
     useEffect(() => {
         LayoutAnimation.spring();
     }, [state]);
-
-    useEffect(() => {
-        getBlogPosts();
-    }, []);
 
     return(
         <View style={{flex: 1}}>
