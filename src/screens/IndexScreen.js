@@ -14,7 +14,7 @@ import { HeaderButton } from '../components/common';
 
 const IndexScreen = ({ navigation }) => {
 
-    const { state, addBlogPost, deleteBlogPost } = useContext(Context);
+    const { state, deleteBlogPost } = useContext(Context);
 
     useEffect(() => {
         LayoutAnimation.spring();
