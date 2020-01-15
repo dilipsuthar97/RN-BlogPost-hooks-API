@@ -18,6 +18,12 @@ const EditScreen = ({ navigation }) => {
     }}/>;
 }
 
+EditScreen.navigationOptions = () => {
+    return {
+        title: "Edit blog post"
+    };
+};
+
 const styles = StyleSheet.create({});
 
 export default EditScreen;

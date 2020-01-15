@@ -1,7 +1,6 @@
 import createDataContext from './createDataContext';
 import jsonServer from '../api/jsonServer';
 
-const ADD_BLOGPOST = 'add_blogpost';
 const DELETE_BLOGPOST = 'delete_blogpost';
 const EDIT_BLODGPOST = 'edit_blogpost';
 const GET_BLOGPOSTS = 'get_blogposts';
@@ -17,13 +16,6 @@ const blogReducer = (state, action) => {
     switch(action.type) {
         case GET_BLOGPOSTS:
             return action.payload;
-
-        case ADD_BLOGPOST:
-            return [...state, {
-                id: Math.floor(Math.random() * 99999),
-                title: action.payload.title,
-                content: action.payload.content
-            }];
 
         case DELETE_BLOGPOST:
             return state.filter((blogPost) => blogPost.id !== action.payload);
@@ -45,34 +37,48 @@ const blogReducer = (state, action) => {
  * action function for add new blog post
  */
 const addBlogPost = (dispatch) => {
-    return (title, content, callBack) => {
-        dispatch({ 
-            type: ADD_BLOGPOST,
-            payload: { title, content }
-        });
+    return async (title, content, callBack) => {
+        await jsonServer.post('/blogposts', { title, content });
+
         if (callBack) {
             callBack();
         }
     };
+    // return (title, content, callBack) => {
+    //     dispatch({ 
+    //         type: ADD_BLOGPOST,
+    //         payload: { title, content }
+    //     });
+    //     if (callBack) {
+    //         callBack();
+    //     }
+    // };
 };
 
 /**
  * action function for delete a specific blog post
  */
 const deleteBlogPost = (dispatch) => {
-    return (id) => {
-        dispatch({
-            type: DELETE_BLOGPOST,
-            payload: id
-        });
+    return async (id) => {
+        await jsonServer.delete(`/blogposts/${id}`)
+
+        dispatch({ type: DELETE_BLOGPOST, payload: id })
     };
+    // return (id) => {
+    //     dispatch({
+    //         type: DELETE_BLOGPOST,
+    //         payload: id
+    //     });
+    // };
 };
 
 /**
  * action function for edit a specific blog post
  */
 const editBlogPost = (dispatch) => {
-    return (id, title, content, callBack) => {
+    return async (id, title, content, callBack) => {
+        await jsonServer.put(`/blogposts/${id}`, { title, content });
+
         dispatch({
             type: EDIT_BLODGPOST,
             payload: { id, title, content }
